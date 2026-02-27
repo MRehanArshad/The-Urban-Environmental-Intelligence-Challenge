@@ -6,6 +6,7 @@ from dotenv import load_dotenv
 from pipelines.data_extractor import DataExtractor
 from config.config_logging import configure_logging
 from pipelines.data_cleaning import clean_data
+from pipelines.dimensionality_reduction import reduce
 
 configure_logging()
 
@@ -42,6 +43,10 @@ def main():
         extractor.run(location_ids)
     
     df = clean_data()
+
+    wide_df = reduce(df)
+
+    print(wide_df)
 
     logger.info("Main Executed Successfully")
 
