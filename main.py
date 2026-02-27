@@ -5,6 +5,7 @@ from dotenv import load_dotenv
 
 from pipelines.data_extractor import DataExtractor
 from config.config_logging import configure_logging
+from pipelines.data_cleaning import clean_data
 
 configure_logging()
 
@@ -40,6 +41,8 @@ def main():
         extractor = DataExtractor(api_key=api_key)
         extractor.run(location_ids)
     
+    df = clean_data()
+
     logger.info("Main Executed Successfully")
 
 if __name__ == "__main__":
