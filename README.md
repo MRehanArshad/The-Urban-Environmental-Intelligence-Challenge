@@ -49,6 +49,12 @@ And, if you want to skip download data step:
 python main.py --skip-download
 ```
 
+For, streamlit window:
+
+```code
+streamlit run app.py
+```
+
 ---
 
 For any problem
