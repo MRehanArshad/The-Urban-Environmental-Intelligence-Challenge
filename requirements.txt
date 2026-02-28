@@ -6,6 +6,6 @@ scikit-learn
 pandas
 matplotlib
 numpy
-streamlit
+streamlit==1.19.0
 geopandas
 contextily
