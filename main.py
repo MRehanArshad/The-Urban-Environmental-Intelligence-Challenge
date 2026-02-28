@@ -7,6 +7,7 @@ from pipelines.data_extractor import DataExtractor
 from config.config_logging import configure_logging
 from pipelines.data_cleaning import clean_data
 from pipelines.dimensionality_reduction import reduce
+from pipelines.heat_density_analysis import analyze
 
 configure_logging()
 
@@ -46,7 +47,7 @@ def main():
 
     wide_df = reduce(df)
 
-    print(wide_df)
+    analyze(df)
 
     logger.info("Main Executed Successfully")
 

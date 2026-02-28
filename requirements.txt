@@ -7,3 +7,5 @@ pandas
 matplotlib
 numpy
 streamlit
+geopandas
+contextily
