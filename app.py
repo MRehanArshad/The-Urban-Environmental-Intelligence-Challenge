@@ -139,6 +139,44 @@ with tab3:
 # Tab 4: Visual Integrity Audit
 # -------------------------------
 with tab4:
+    # --- Generate Random Data ---
+    np.random.seed(42)
+    regions = [f"Region {i}" for i in range(1, 11)]
+    population_density = np.random.randint(50, 1000, size=10)
+    pollution_index = np.random.randint(10, 200, size=10)
+
+    df2 = pd.DataFrame({
+        "Region": regions,
+        "Population_Density": population_density,
+        "Pollution_Index": pollution_index
+    })
+
+    # --- Plotting Small Multiples ---
+    fig, axes = plt.subplots(2, 5, figsize=(20, 8), sharey=True)
+
+    for ax, (_, row) in zip(axes.flatten(), df2.iterrows()):
+        values = [row["Population_Density"], row["Pollution_Index"]]
+        variables = ["Population Density", "Pollution Index"]
+        
+        # Normalize values for color mapping
+        norm = plt.Normalize(min(values), max(values))
+        
+        ax.bar(variables, values)
+        ax.set_title(row["Region"])
+        ax.set_ylabel("")
+
+    # Common labels
+    fig.text(0.5, 0.04, 'Variables', ha='center', fontsize=14)
+    fig.text(0.04, 0.5, 'Value', va='center', rotation='vertical', fontsize=14)
+    fig.suptitle("Small Multiples: Population Density vs Pollution Index by Region", fontsize=16)
+    plt.tight_layout(rect=[0.03, 0.03, 1, 0.95])
+
+    st.pyplot(fig)
+
+    # --- Show Data Table ---
+    st.subheader("Data Table")
+    st.dataframe(df2)
+
     st.subheader("PM2.5 levels by location")
     df_pol = (
         df.filter(pl.col("parameter") == "pm25")
